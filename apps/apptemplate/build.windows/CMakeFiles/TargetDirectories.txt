@@ -1,0 +1,3 @@
+C:/Users/kayle/OneDrive/Documents/CS372/week1/cs372.hurst/apps/apptemplate/build.windows/CMakeFiles/assignment01.dir
+C:/Users/kayle/OneDrive/Documents/CS372/week1/cs372.hurst/apps/apptemplate/build.windows/CMakeFiles/ALL_BUILD.dir
+C:/Users/kayle/OneDrive/Documents/CS372/week1/cs372.hurst/apps/apptemplate/build.windows/CMakeFiles/ZERO_CHECK.dir

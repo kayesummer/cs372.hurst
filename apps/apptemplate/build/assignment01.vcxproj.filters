@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\kayle\OneDrive\Documents\CS372\week1\cs372.hurst\apps\apptemplate\source\assignment01.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\kayle\OneDrive\Documents\CS372\week1\cs372.hurst\include\list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\kayle\OneDrive\Documents\CS372\week1\cs372.hurst\apps\apptemplate\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{EB395BA3-DD3D-3847-BCD7-4B5F73D7014B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{A78EC6D1-1FB7-326F-A339-A48DEE9117CC}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
