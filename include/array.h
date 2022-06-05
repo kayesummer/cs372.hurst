@@ -10,10 +10,10 @@
 template <typename T>
 class Array {
 public:
-  Array() {
-    arr = new T[1];
+  Array(int size_t) {
+    arr = new T[size_t];
     aCapacity = 1;
-    length = 0;
+    length = size_t;
   }
   ~Array() {
     delete [] arr;
@@ -105,7 +105,6 @@ private:
   T *arr = new T[1];
   int aCapacity = 1;
   int length = 1;
-  int size_t = 1;
 
   void expand(int newCapacity) {
     if (newCapacity > aCapacity) {
