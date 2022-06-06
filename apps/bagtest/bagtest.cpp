@@ -44,5 +44,15 @@ int main()
     std::cout << "The number '1' is in this list " << aBagOfIntegers.count(1) << " times." << std::endl;    //testing w/o duplicate- should be 1
     std::cout << "The number '25' is in this list " << aBagOfIntegers.count(25) << " times." << std::endl;  //testing w/ no instance- should be 0
 
+    aBagOfIntegers.pop();       //pop behavior
+    if (aBagOfIntegers.size() == 10)
+    {
+        std::cout << "There are 10 items in your bag, again." << std::endl;   
+    }
+    else 
+    {
+        std::cout << "Something went wrong in the .pop() function!" << std::endl;
+    }
+
     return 0;
 }
