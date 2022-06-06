@@ -22,7 +22,7 @@ public:
 
   void put(T data, int index) {
     if (index == aCapacity) {
-      push_back(T data);
+      push_back(data);
     }
     else {
       arr[index] = data;
@@ -41,7 +41,7 @@ public:
 
   T &at(int index) {
     if (index < 0 || index > length) {
-			cerr << "Array: index out of bounds on access" << endl;
+			std::cerr << "Array: index out of bounds on access" << std::endl;
 			exit(1);
 		}
 		else {
@@ -59,9 +59,9 @@ public:
 
   void traverse() {
 		for (int i = 0; i < length; i++) {
-			cout << arr[i] << endl;
+			std::cout << arr[i] << std::endl;
 		}
-		cout << endl;
+		std::cout << std::endl;
   }
 
 	bool operator==(Array& other) const {
@@ -80,7 +80,7 @@ public:
 
   T& operator[](int i) {
     if ((i < 0) || (i >= length)) {
-      cerr << endl << "Array index out of bounds" << endl;
+      std::cerr << std::endl << "Array index out of bounds" << std::endl;
     }
     return at(i);
   }
