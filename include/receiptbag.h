@@ -31,8 +31,8 @@ public:
   {
     bagContents->push_back(&aThing);
     counter++;
-    receiptID->push_back(receipt);
     receipt++;
+    receiptID->push_back(receipt);
     return receipt;
   }
 
