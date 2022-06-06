@@ -32,7 +32,7 @@ public:
   void pop() 
   {
     Thing* ptrToAThing;
-    int i = bagContents.size();
+    int i = counter;
     bool thingIsNull = true;
     while (thingIsNull && (i > 0)) {
       if (bagContents[i] != nullptr) {

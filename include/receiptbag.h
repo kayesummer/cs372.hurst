@@ -1,5 +1,5 @@
 //
-// File:   receiptbag.h
+// File:   r eceiptbag.h
 // Author: Your Glorious Instructor
 // Purpose:
 // Implement the Bag ADT.
@@ -32,7 +32,7 @@ public:
   void pop() 
   {
     Thing* ptrToAThing;
-    int i = bagContents.size();
+    int i = counter;
     bool thingIsNull = true;
     while (thingIsNull && (i > 0)) {
       if (bagContents[i] != nullptr) {
@@ -65,4 +65,5 @@ public:
 private:
   List<Thing*> *bagContents;
   int counter = 0;
+  int receipt = 0;
 };
