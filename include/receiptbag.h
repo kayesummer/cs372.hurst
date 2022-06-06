@@ -27,7 +27,7 @@ public:
     receiptID = nullptr;
   }
 
-  int insert(Thing aThing) 
+  int insert(Thing aThing)  //to add item to the end of the bag
   {
     bagContents->push_back(&aThing);
     counter++;
@@ -36,7 +36,7 @@ public:
     return receipt;
   }
 
-  Thing &pop() 
+  Thing &pop()    //to remove the last item in bag
   {
     Thing* ptrToAThing;
     int i = counter;
@@ -53,12 +53,12 @@ public:
     }
   }
 
-  int size() 
+  int size()    //returns number of items in bag
   {
     return counter;
   }
 
-  int count(Thing aThing) 
+  int count(Thing aThing)     //returns the number of times a thing is in the bag
   {
     int numberOfTimes = 0;
     for (int i = 0; i < counter; i++)
