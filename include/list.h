@@ -124,8 +124,28 @@ public:
       current = current->next;
     }
   }
+
+  void remove(T item)     //to remove/delete a specific item, it wont let me name it delete
+  {
+    int index = 0;
+    int position = -1; 
+    bool found = false; 
+    Node* current = head;
+    while (current != nullptr && !found)
+    {
+      if ((*current).data == item)
+      {
+          found = true; 
+      }
+      current++;
+    }
+
+   if (found)
+   {
+      (current.prev).next = current.next;
+      (current).prev = current.prev;
+      delete current;
+   }
+
+  }
 };
-
-
-
-
