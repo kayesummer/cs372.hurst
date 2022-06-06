@@ -2,7 +2,7 @@
 // File:   Array.h
 // Author: Kaylee Hurst
 // Purpose:
-// A simplifed version of the C++ STL array class
+// A simplifed version of the C++ STL array class.
 
 #pragma once
 #include <iostream>
