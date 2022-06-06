@@ -1,5 +1,5 @@
 //
-// File:   r eceiptbag.h
+// File:   receiptbag.h
 // Author: Your Glorious Instructor
 // Purpose:
 // Implement the Bag ADT.
@@ -15,21 +15,28 @@ public:
   {
     bagContents = new List<Thing*>;
     bagContents[0] = nullptr;
+    receiptID = new List<Thing*>;
+    receiptID[0] = nullptr;
   }
 
   ~ReceiptBag() 
   {
     delete [] bagContents;
     bagContents = nullptr;
+    delete [] receiptID;
+    receiptID = nullptr;
   }
 
-  void insert(Thing aThing) 
+  int insert(Thing aThing) 
   {
     bagContents->push_back(&aThing);
     counter++;
+    receiptID->push_back(receipt);
+    receipt++;
+    return receipt;
   }
 
-  void pop() 
+  Thing &pop() 
   {
     Thing* ptrToAThing;
     int i = counter;
@@ -39,7 +46,9 @@ public:
         ptrToAThing = bagContents[i];
         thingIsNull = false;
         ptrToAThing.remove();
+        receiptID[i].remove();
         counter--;
+        return ptrToAThing;
       }
     }
   }
@@ -64,6 +73,7 @@ public:
 
 private:
   List<Thing*> *bagContents;
+  List<Thing*> *receiptID
   int counter = 0;
   int receipt = 0;
 };
