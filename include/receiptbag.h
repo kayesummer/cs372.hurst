@@ -9,71 +9,68 @@
 #include "list.h"
 
 template <typename Thing>
-class ReceiptBag {
+class ReceiptBag 
+{
 public:
   ReceiptBag() 
   {
-    bagContents = new List<Thing*>;
-    bagContents[0] = nullptr;
-    receiptID = new List<Thing*>;
-    receiptID[0] = nullptr;
+    bagContents = new List<Thing*> ;
+    bagContents[0] = nullptr ;
   }
 
   ~ReceiptBag() 
   {
-    delete [] bagContents;
-    bagContents = nullptr;
-    delete [] receiptID;
-    receiptID = nullptr;
+    delete [] bagContents ;
+    bagContents = nullptr ;
   }
 
   int insert(Thing aThing)  //to add item to the end of the bag
   {
-    bagContents->push_back(&aThing);
-    counter++;
-    receipt++;
-    receiptID->push_back(receipt);
-    return receipt;
+    bagContents->push_back(&aThing) ;
+    counter++ ;
+    receipt++ ;
+    receiptID->push_back(receipt) ;
+    return receipt ;
   }
 
-  Thing &pop()    //to remove the last item in bag
+  Thing *pop(int receipt)    //to remove the last item in bag
   {
-    Thing* ptrToAThing;
-    int i = counter;
-    bool thingIsNull = true;
-    while (thingIsNull && (i > 0)) {
-      if (bagContents[i] != nullptr) {
-        ptrToAThing = bagContents[i];
-        thingIsNull = false;
-        ptrToAThing.remove();
-        receiptID[i].remove();
-        counter--;
-        return ptrToAThing;
+    Thing * ptrToAThing = nullptr ;
+    int i = counter ;
+    bool thingIsNull = true ;
+    while (thingIsNull && (i > 0) && (receipts[i] != receipt)) 
+    {
+        if (bagContents[i] != nullptr) 
+        {
+          ptrToAThing = bagContents[i] ;
+          thingIsNull = false ;
+          receipt[i] = 0 ;
+        }
       }
-    }
+    return ptrToAThing ;
   }
 
   int size()    //returns number of items in bag
   {
-    return counter;
+    return counter ;
   }
 
   int count(Thing aThing)     //returns the number of times a thing is in the bag
   {
-    int numberOfTimes = 0;
+    int numberOfTimes = 0 ;
     for (int i = 0; i < counter; i++)
     {
       if ((bagContents[i]) == aThing)
       {
-        numberOfTimes++;
+        numberOfTimes++ ;
       }
     }
-    return numberOfTimes;
+    return numberOfTimes ;
   }
 
 private:
-  List<Thing*> *bagContents;
-  List<Thing*> *receiptID
-  int counter = 0;
-  int receipt = 0;
+  List<Thing*> *bagContents ;
+  List<int> *receiptID ;
+  int counter = 0 ;
+  int receipt = 0 ;
 };

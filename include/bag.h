@@ -25,28 +25,30 @@ public:
 
   void insert(Thing aThing)     //to add item to the end of the bag
   {
-    bagContents->push_back(&aThing);
+    bagContents->push_back(aThing);
     counter++;
   }
 
   void pop()      //to remove the last item in bag
   {
-    Thing* ptrToAThing;
-    int i = counter;
-    bool thingIsNull = true;
-    while (thingIsNull && (i > 0)) {
-      if (bagContents[i] != nullptr) {
-        ptrToAThing = bagContents[i];
-        thingIsNull = false;
-        ptrToAThing.remove();
-        counter--;
-      }
+    Thing aThing ;
+    if (counter > 0)
+    {
+      aThing = bagContents[counter] ;
+      bagContents.remove(aThing) ;
+      counter-- ;
     }
+    else 
+    {
+      std::cerr << "Can't pop out of an empty bag" << std::endl ;
+    }
+
+    return aThing ;
   }
 
   int size()      //returns number of items in bag
   {
-    return counter;
+    return counter ;
   }
 
   int count(Thing aThing)     //returns the number of times a thing is in the bag
