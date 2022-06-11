@@ -14,63 +14,67 @@ class ReceiptBag
 public:
   ReceiptBag() 
   {
-    bagContents = new List<Thing*> ;
-    bagContents[0] = nullptr ;
+    bagContents = new List<Thing*>;
+    bagContents[0] = nullptr;
   }
 
   ~ReceiptBag() 
   {
-    delete [] bagContents ;
-    bagContents = nullptr ;
+    delete [] bagContents;
+    bagContents = nullptr;
   }
 
-  int insert(Thing aThing)  //to add item to the end of the bag
+  //to add item to the end of the bag
+  int insert(Thing aThing)  
   {
-    bagContents->push_back(&aThing) ;
-    counter++ ;
-    receipt++ ;
-    receiptID->push_back(receipt) ;
-    return receipt ;
+    bagContents->push_back(&aThing);
+    counter++;
+    receipt++;
+    receiptID->push_back(receipt);
+    return receipt;
   }
 
-  Thing *pop(int receipt)    //to remove the last item in bag
+  //to remove the last item in bag
+  Thing *pop(int receipt)    
   {
-    Thing * ptrToAThing = nullptr ;
-    int i = counter ;
-    bool thingIsNull = true ;
+    Thing * ptrToAThing = nullptr;
+    int i = counter;
+    bool thingIsNull = true;
     while (thingIsNull && (i > 0) && (receipts[i] != receipt)) 
     {
         if (bagContents[i] != nullptr) 
         {
-          ptrToAThing = bagContents[i] ;
-          thingIsNull = false ;
-          receipt[i] = 0 ;
+          ptrToAThing = bagContents[i];
+          thingIsNull = false;
+          receipt[i] = 0;
         }
       }
-    return ptrToAThing ;
+    return ptrToAThing;
   }
 
-  int size()    //returns number of items in bag
+  //returns number of items in bag
+  int size()    
   {
-    return counter ;
+    return counter;
   }
 
-  int count(Thing aThing)     //returns the number of times a thing is in the bag
+  //returns the number of times a thing is in the bag
+  int count(Thing aThing)     
   {
-    int numberOfTimes = 0 ;
+    int numberOfTimes = 0;
     for (int i = 0; i < counter; i++)
     {
       if ((bagContents[i]) == aThing)
       {
-        numberOfTimes++ ;
+        numberOfTimes++;
       }
     }
-    return numberOfTimes ;
+    return numberOfTimes;
   }
 
 private:
-  List<Thing*> *bagContents ;
-  List<int> *receiptID ;
-  int counter = 0 ;
-  int receipt = 0 ;
+  List<Thing*> *bagContents;
+  List<int> *receiptID;
+  int counter = 0;
+  int receipt = 0;
 };
