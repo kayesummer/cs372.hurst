@@ -41,7 +41,7 @@ public:
 
   T &at(int index) {
     if (index < 0 || index > length) {
-			cerr << "Vector: index out of bounds on access" << endl;
+			std::cerr << "Vector: index out of bounds on access" << std::endl;
 			exit(1);
 		}
 		else {
@@ -59,9 +59,9 @@ public:
 
   void traverse() {
 		for (int i = 0; i < length; i++) {
-			cout << arr[i] << endl;
+			std::cout << arr[i] << std::endl;
 		}
-		cout << endl;
+		std::cout << std::endl;
   }
 
 	bool operator==(Vector& other) const {
@@ -80,7 +80,7 @@ public:
 
   T& operator[](int i) {
     if ((i < 0) || (i >= length)) {
-      cerr << endl << "Vector index out of bounds" << endl;
+      std::cerr << std::endl << "Vector index out of bounds" << std::endl;
     }
     return at(i);
   }
