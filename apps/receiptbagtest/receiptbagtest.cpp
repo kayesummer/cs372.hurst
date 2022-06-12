@@ -43,7 +43,7 @@ int main()
     cout << "The Size of the Bag: " << aBagOfIntegers.size() << endl;      
     
     //testing receipt return
-    cout << aBagOfIntegers.insert(9) << endl ;              
+    cout << aBagOfIntegers.insert(9) << endl;              
 
     //count behavior
     cout << "The number '9' is in this list " << aBagOfIntegers.count(9) << " times." << endl;     //testing w/ duplicate- should be 2
@@ -51,7 +51,7 @@ int main()
     cout << "The number '25' is in this list " << aBagOfIntegers.count(25) << " times." << endl;  //testing w/ no instance- should be 0
 
     //pop behavior
-    aBagOfIntegers.pop();       
+    cout << aBagOfIntegers.pop() << endl;       
     if (aBagOfIntegers.size() == 10)
     {
         cout << "There are 10 items in your bag, again." << endl;   
