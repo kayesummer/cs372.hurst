@@ -1,0 +1,5 @@
+0 U groceries
+1 U vacuum
+2 D homework
+3 U dishes 
+4 D laundry
