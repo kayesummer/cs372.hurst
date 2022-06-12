@@ -18,6 +18,7 @@ private:
   };
   Node* head = nullptr;
   Node* tail = nullptr;
+  T *listPtr;
   void setupList() {
     Node* newNode = new Node();
     newNode->next = nullptr;
@@ -151,6 +152,14 @@ public:
 
   virtual C * next()
   {
-    
+    if (listPtr == nullptr)
+    {
+      return nullptr;
+    }
+    else 
+    {
+      ++listPtr;
+      return listPtr;
+    }
   }
 };

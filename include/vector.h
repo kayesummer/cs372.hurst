@@ -104,13 +104,23 @@ public:
 	}
 
   virtual C * next()
-  {
-
+  { 
+    if (vectorPtr == nullptr)
+    {
+      return nullptr;
+    }
+    else 
+    {
+      ++vectorPtr;
+      return vectorPtr;
+    }
+  
   } 
 private:
   T *arr = new T[1];
   int vCapacity = 1;
   int length = 1;
+  T *vectorPtr;
 
   void expand(int newCapacity) {
     if (newCapacity > vCapacity) {
