@@ -35,21 +35,24 @@ public:
   }
 
   //to remove the last item in bag
-  Thing *pop(int receipt)    
+  Thing pop()    
   {
-    Thing * ptrToAThing = nullptr;
-    int i = counter;
-    bool thingIsNull = true;
-    while (thingIsNull && (i > 0) && (receipts[i] != receipt)) 
+    Thing aThing;
+    Thing receiptThing;
+    if (counter > 0)
     {
-        if (bagContents[i] != nullptr) 
-        {
-          ptrToAThing = bagContents[i];
-          thingIsNull = false;
-          receipt[i] = 0;
-        }
-      }
-    return ptrToAThing;
+      aThing = bagContents[counter];
+      receiptThing = receiptID[counter];
+      bagContents.remove(aThing);
+      receiptID.remove(receiptThing);
+      counter--;
+    }
+    else 
+    {
+      std::cerr << "Can't pop out of an empty bag" << std::endl;
+    }
+
+    return aThing;
   }
 
   //returns number of items in bag
