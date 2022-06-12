@@ -154,5 +154,21 @@ void completeTask()
 
 void updateFile()
 {
-
+    ofstream outFile;
+    outFile.open(DATAFILE);
+    if (outFile.is_open())
+    {
+        for (int count = 0; count < taskData.size(); count++)
+        {
+            if (taskData[count].status == 'U')
+            {
+                outFile << taskData[count].taskNumber << " " << taskData[count].status << " " << taskData[count].description << "\n";
+            }
+        }
+        outFile.close();
+    }
+    else
+    {
+        cerr << "Error: Unable to open data file \n";
+    }
 }
