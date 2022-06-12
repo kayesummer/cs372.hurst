@@ -8,21 +8,21 @@
 #include <iostream>
 
 template <typename T>
-class vector {
+class Vector {
 public:
-  vector() {
+  Vector() {
     arr = new T[1];
     vCapacity = 1;
     length = 0;
   }
-  ~vector() {
+  ~Vector() {
     delete [] arr;
     arr = nullptr;
   }
 
   void put(T data, int index) {
     if (index == vCapacity) {
-      push_back(T data);
+      push_back(data);
     }
     else {
       arr[index] = data;
@@ -85,7 +85,7 @@ public:
     return at(i);
   }
 
-	vector& operator=(const Vector& source) {
+	Vector& operator=(const Vector& source) {
 		// Do a self check.
 		if (this == &source)
 		{

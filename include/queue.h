@@ -9,7 +9,7 @@
 
 template <typename T>
 
-class Queue 
+class Queue : public Iterator<T>
 {
     private:
         List<T> *queueList ; = new List<T> ();
@@ -24,4 +24,8 @@ class Queue
         {
             queueList.traverse(doIt);
         }
+       virtual C * next()
+       {
+
+       }   
 };
