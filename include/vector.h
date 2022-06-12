@@ -8,7 +8,8 @@
 #include <iostream>
 
 template <typename T>
-class Vector {
+class Vector : public Iterator<T>
+{
 public:
   Vector() {
     arr = new T[1];
@@ -101,6 +102,11 @@ public:
 		}
 		return *this;
 	}
+
+  virtual C * next()
+  {
+
+  } 
 private:
   T *arr = new T[1];
   int vCapacity = 1;

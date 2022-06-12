@@ -7,7 +7,7 @@
 #pragma once
 #include <iostream>
 template <typename T>
-class List
+class List : public Iterator<T>
 {
 private:
   class Node {
@@ -147,5 +147,10 @@ public:
       delete current;
    }
 
+  }
+
+  virtual C * next()
+  {
+    
   }
 };
