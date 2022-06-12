@@ -13,7 +13,7 @@ class Queue : public Iterator<T>
 {
     private:
         List<T> *queueList ; = new List<T> ();
-        T *queuePtr;
+        T *queuePtr = queueList.front();
     public:
         Queue() {}
         Queue(Queue &rhs) {}

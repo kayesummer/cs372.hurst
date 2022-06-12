@@ -18,7 +18,7 @@ private:
   };
   Node* head = nullptr;
   Node* tail = nullptr;
-  T *listPtr;
+  T *listPtr = head;
   void setupList() {
     Node* newNode = new Node();
     newNode->next = nullptr;

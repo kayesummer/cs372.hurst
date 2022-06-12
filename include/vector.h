@@ -120,7 +120,7 @@ private:
   T *arr = new T[1];
   int vCapacity = 1;
   int length = 1;
-  T *vectorPtr;
+  T *vectorPtr = arr[1];
 
   void expand(int newCapacity) {
     if (newCapacity > vCapacity) {
