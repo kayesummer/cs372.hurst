@@ -33,7 +33,7 @@ class Queue : public Iterator<T>
            }
            else 
            { 
-              ++queuePtr;
+              queuePtr.next();
               return queuePtr;
            }
         }   
