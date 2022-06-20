@@ -8,7 +8,7 @@
 #include <iostream>
 
 template <typename T>
-class Vector : public Iterator<T>
+class Vector : public Container<T>
 {
 public:
   Vector() {
@@ -50,8 +50,36 @@ public:
 		}
   }
 
-  int size() {
+  int size() override
+  {
     return length;
+  }
+
+  int max_size() override;
+
+  bool empty() override 
+  {
+    if (length == 0)
+    {
+      return true;
+    }
+    else 
+    {
+      return false;
+    }
+  }
+
+  void swap (T& a,T& b) override
+  {
+    T temp;
+    temp = a;
+    a = b;
+    b = temp;
+  }
+
+  void clear () override
+  {
+    delete[] arr;
   }
 
   int capacity() {
@@ -103,7 +131,7 @@ public:
 		return *this;
 	}
 
-  virtual C * next()
+  C * next()
   { 
     if (vectorPtr == nullptr)
     {
@@ -117,6 +145,13 @@ public:
   
   } 
 private:
+template <class C>
+class Iterator
+{
+    public:
+        virtual C * next() = 0 ;
+};
+
   T *arr = new T[1];
   int vCapacity = 1;
   int length = 1;

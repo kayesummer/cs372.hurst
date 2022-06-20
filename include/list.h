@@ -7,9 +7,16 @@
 #pragma once
 #include <iostream>
 template <typename T>
-class List : public Iterator<T>
+class List : public Container<T>
 {
 private:
+  template <class C>
+  class Iterator
+  {
+    public:
+      virtual C * next() = 0 ;
+  };
+
   class Node {
   public:
     T  data;
@@ -19,6 +26,7 @@ private:
   Node* head = nullptr;
   Node* tail = nullptr;
   T *listPtr = head;
+  int size_t = 0;
   void setupList() {
     Node* newNode = new Node();
     newNode->next = nullptr;
@@ -53,8 +61,35 @@ public:
     deleteListContents();
   }
 
-  bool  empty() {
+  bool  empty() override
+  {
     return (head == nullptr);
+  }
+
+  void clear () override
+  {
+    deleteListContents();
+  }
+
+  int size () override
+  {
+    Node* current = head;
+    while (current != nullptr) {
+      doIt(current->data);
+      current = current->next;
+      size_t++;
+      return size_t;
+    }
+  }
+
+  int max_size () override;
+
+  void swap (T& a, T& b) override
+  {
+    T temp;
+    temp = a;
+    a = b;
+    b = temp;
   }
 
   void push_front(T data) {
@@ -150,7 +185,7 @@ public:
 
   }
 
-  virtual C * next()
+  C * next()
   {
     if (listPtr == nullptr)
     {
