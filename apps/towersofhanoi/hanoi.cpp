@@ -32,32 +32,35 @@ int main()  //driver program
     const int TOPEG = 3;
     const int TEMPPEG = 2;
 
+    auto start1 = chrono::steady_clock::now();
     recursiveMoveDisks(NUMDISKS, FROMPEG, TOPEG, TEMPPEG);
+    auto end1 = chrono::steady_clock::now();
+    chrono::duration<double> elapsed_seconds1 = end1 - start1; 
+    cout << "Recursive elapsed time: " << elapsed_seconds1.count() << " s\n";
 
     cout << endl << endl;
 
+    auto start2 = chrono::steady_clock::now();
     iterativeMoveDisks(NUMDISKS, 'A', 'B', 'C');
+    auto end2 = chrono::steady_clock::now();
+    chrono::duration<double> elapsed_seconds2 = end2 - start2;
+    cout << "Iterative elapsed time: " << elapsed_seconds2.count() << " s\n"; 
 
     return 0;
 }
 
 void recursiveMoveDisks (int num, int fromPeg, int toPeg, int tempPeg)
 {
-    auto start = chrono::steady_clock::now();
     if (num > 0)
     {
         recursiveMoveDisks(num - 1, fromPeg, tempPeg, toPeg);
         cout << "Move a disk from peg " << fromPeg << " to peg " << toPeg << endl;
         recursiveMoveDisks(num - 1, tempPeg, toPeg, fromPeg);
     }
-    auto end = chrono::steady_clock::now();
-    chrono::duration<double> elapsed_seconds = end - start; 
-    cout << "Recursive elapsed time: " << elapsed_seconds.count() << " s\n";
 }
 
 void iterativeMoveDisks (int num, char fromPeg, char tempPeg, char toPeg)
 {
-    auto start = chrono::steady_clock::now();
     stack<Hanoi> st;
 
     while (num >= 1 || !st.empty())
@@ -83,10 +86,6 @@ void iterativeMoveDisks (int num, char fromPeg, char tempPeg, char toPeg)
         toPeg = current.to;
         num = current.n-1;
     } 
-
-    auto end = chrono::steady_clock::now();
-    chrono::duration<double> elapsed_seconds = end - start;
-    cout << "Iterative elapsed time: " << elapsed_seconds.count() << " s\n"; 
 }
 
 void swap (char& toPeg, char& tempPeg)
