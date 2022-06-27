@@ -27,7 +27,7 @@ void swap (int&, int&);
 
 int main()  //driver program
 {
-    const int NUMDISKS = 5;
+    const int NUMDISKS = 20;
     const int FROMPEG = 1;
     const int TOPEG = 3;
     const int TEMPPEG = 2;
@@ -36,7 +36,6 @@ int main()  //driver program
     recursiveMoveDisks(NUMDISKS, FROMPEG, TOPEG, TEMPPEG);
     auto end1 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds1 = end1 - start1; 
-    cout << "Recursive elapsed time: " << elapsed_seconds1.count() << " s\n";
 
     cout << endl << endl;
 
@@ -44,6 +43,8 @@ int main()  //driver program
     iterativeMoveDisks(NUMDISKS, FROMPEG, TEMPPEG, TOPEG);
     auto end2 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds2 = end2 - start2;
+    
+    cout << "Recursive elapsed time: " << elapsed_seconds1.count() << " s\n";
     cout << "Iterative elapsed time: " << elapsed_seconds2.count() << " s\n"; 
 
     return 0;
