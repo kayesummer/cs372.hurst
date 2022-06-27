@@ -14,16 +14,16 @@ using namespace std;
 class Hanoi 
 {
     public:
-        char from;
-        char to;
-        char temp;
+        int from;
+        int to;
+        int temp;
         int n;
 };
 
 //function prototypes
 void recursiveMoveDisks (int, int, int, int);
-void iterativeMoveDisks (int, char, char, char);
-void swap (char&, char&);
+void iterativeMoveDisks (int, int, int, int);
+void swap (int&, int&);
 
 int main()  //driver program
 {
@@ -41,7 +41,7 @@ int main()  //driver program
     cout << endl << endl;
 
     auto start2 = chrono::steady_clock::now();
-    iterativeMoveDisks(NUMDISKS, 'A', 'B', 'C');
+    iterativeMoveDisks(NUMDISKS, FROMPEG, TEMPPEG, TOPEG);
     auto end2 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds2 = end2 - start2;
     cout << "Iterative elapsed time: " << elapsed_seconds2.count() << " s\n"; 
@@ -59,38 +59,42 @@ void recursiveMoveDisks (int num, int fromPeg, int toPeg, int tempPeg)
     }
 }
 
-void iterativeMoveDisks (int num, char fromPeg, char tempPeg, char toPeg)
+void iterativeMoveDisks (int num, int fromPeg, int tempPeg, int toPeg)
 {
     stack<Hanoi> st;
 
     while (num >= 1 || !st.empty())
     {
-        Hanoi current; 
-        current.from = fromPeg;
-        current.temp = tempPeg; 
-        current.to = toPeg;
-        current.n = num;
-        st.push(current);
-        swap(toPeg, tempPeg);
-        num--;
+        while (num >= 1)
+        {
+            Hanoi current; 
+            current.from = fromPeg;
+            current.temp = tempPeg; 
+            current.to = toPeg;
+            current.n = num;
+            st.push(current);
+            swap(toPeg, tempPeg);
+            num--;
+        }
+        
+        Hanoi current = st.top();
+        st.pop();
+        cout << "Move a disk from peg " << current.from << " to peg " << current.to << endl;
+
+        if (current.n >= 1)
+        {
+            fromPeg = current.temp;
+            tempPeg = current.from;
+            toPeg = current.to;
+            num = current.n-1;
+        }
+        
     }
-
-    Hanoi current = st.top();
-    st.pop();
-    cout << "Move disk " << current.n << " from peg " << current.from << " to peg " << current.to << endl;
-
-    if (current.n >= 1)
-    {
-        fromPeg = current.temp;
-        tempPeg = current.from;
-        toPeg = current.to;
-        num = current.n-1;
-    } 
 }
 
-void swap (char& toPeg, char& tempPeg)
+void swap (int& toPeg, int& tempPeg)
 {
-    char temporary;
+    int temporary;
     temporary = toPeg;
     toPeg = tempPeg;
     tempPeg = temporary;
