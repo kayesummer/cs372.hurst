@@ -70,49 +70,105 @@ int main()
     //call functions to fill array & then time each algorithm
     fillArray(NUM1, array1);
     auto start1 = chrono::steady_clock::now();
-    anyEqual(NUM1, array1);
+    if (anyEqual(NUM1, array1) == 1)
+    {
+        cout << "Array1 has a pair of matching values.\n";
+    }
+    else //anyEqual(NUM1, array1) == 0
+    {
+        cout << "Array1 has no matching values.\n";
+    }
     auto end1 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds1 = end1 - start1; 
 
     fillArray(NUM2, array2);
     auto start2 = chrono::steady_clock::now();
-    anyEqual(NUM2, array2);
+    if (anyEqual(NUM2, array2) == 1)
+    {
+        cout << "Array2 has a pair of matching values.\n";
+    }
+    else //anyEqual(NUM2, array2) == 0
+    {
+        cout << "Array2 has no matching values.\n";
+    }
     auto end2 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds2 = end2 - start2; 
 
     fillArray(NUM3, array3);
     auto start3 = chrono::steady_clock::now();
-    anyEqual(NUM3, array3);
+    if (anyEqual(NUM3, array3) == 1)
+    {
+        cout << "Array3 has a pair of matching values.\n";
+    }
+    else //anyEqual(NUM3, array3) == 0
+    {
+        cout << "Array3 has no matching values.\n";
+    }
     auto end3 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds3 = end3 - start3; 
 
     fillArray(NUM4, array4);
     auto start4 = chrono::steady_clock::now();
-    anyEqual(NUM4, array4);
+    if (anyEqual(NUM4, array4) == 1)
+    {
+        cout << "Array4 has a pair of matching values.\n";
+    }
+    else //anyEqual(NUM4, array4) == 0
+    {
+        cout << "Array4 has no matching values.\n";
+    }
     auto end4 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds4 = end4 - start4; 
 
     fillArray(NUM5, array5);
     auto start5 = chrono::steady_clock::now();
-    anyEqual(NUM5, array5);
+    if (anyEqual(NUM5, array5) == 1)
+    {
+        cout << "Array5 has a pair of matching values.\n";
+    }
+    else //anyEqual(NUM5, array5) == 0
+    {
+        cout << "Array5 has no matching values.\n";
+    }
     auto end5 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds5 = end5 - start5; 
 
     fillArray(NUM6, array6);
     auto start6 = chrono::steady_clock::now();
-    anyEqual(NUM6, array6);
+    if (anyEqual(NUM6, array6) == 1)
+    {
+        cout << "Array6 has a pair of matching values.\n";
+    }
+    else //anyEqual(NUM6, array6) == 0
+    {
+        cout << "Array6 has no matching values.\n";
+    }
     auto end6 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds6 = end6 - start6; 
 
     fillArray(NUM7, array7);
     auto start7 = chrono::steady_clock::now();
-    anyEqual(NUM7, array7);
+    if (anyEqual(NUM7, array7) == 1)
+    {
+        cout << "Array7 has a pair of matching values.\n";
+    }
+    else //anyEqual(NUM7, array7) == 0
+    {
+        cout << "Array7 has no matching values.\n";
+    }
     auto end7 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds7 = end7 - start7; 
 
     fillArray(NUM8, array8);
     auto start8 = chrono::steady_clock::now();
-    anyEqual(NUM8, array8);
+    if (anyEqual(NUM8, array8) == 1)
+    {
+        cout << "Array8 has a pair of matching values.\n";
+    }
+    else //anyEqual(NUM8, array8) == 0
+    {
+        cout << "Array8 has no matching values.\n";
+    }
     auto end8 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds8 = end8 - start8; 
 
