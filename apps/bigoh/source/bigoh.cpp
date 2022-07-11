@@ -11,7 +11,7 @@ using namespace std;
 
 //function prototypes 
 int anyEqual(const int, int**);
-void fillArray(const int, int**);
+double fillArray(const int, int**);
 
 
 int main()
@@ -24,6 +24,14 @@ int main()
     const int NUM6 = 100;
     const int NUM7 = 500;
     const int NUM8 = 1000; 
+    double average1 = 0;
+    double average2 = 0;
+    double average3 = 0;
+    double average4 = 0;
+    double average5 = 0;
+    double average6 = 0;
+    double average7 = 0;
+    double average8 = 0;
     
     //double pointer array initialization
     int ** array1 = new int*[NUM1];
@@ -68,7 +76,7 @@ int main()
     }
 
     //call functions to fill array & then time each algorithm
-    fillArray(NUM1, array1);
+    average1 = fillArray(NUM1, array1);
     auto start1 = chrono::steady_clock::now();
     if (anyEqual(NUM1, array1) == 1)
     {
@@ -81,7 +89,7 @@ int main()
     auto end1 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds1 = end1 - start1; 
 
-    fillArray(NUM2, array2);
+    average2 = fillArray(NUM2, array2);
     auto start2 = chrono::steady_clock::now();
     if (anyEqual(NUM2, array2) == 1)
     {
@@ -94,7 +102,7 @@ int main()
     auto end2 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds2 = end2 - start2; 
 
-    fillArray(NUM3, array3);
+    average3 = fillArray(NUM3, array3);
     auto start3 = chrono::steady_clock::now();
     if (anyEqual(NUM3, array3) == 1)
     {
@@ -107,7 +115,7 @@ int main()
     auto end3 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds3 = end3 - start3; 
 
-    fillArray(NUM4, array4);
+    average4 = fillArray(NUM4, array4);
     auto start4 = chrono::steady_clock::now();
     if (anyEqual(NUM4, array4) == 1)
     {
@@ -120,7 +128,7 @@ int main()
     auto end4 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds4 = end4 - start4; 
 
-    fillArray(NUM5, array5);
+    average5 = fillArray(NUM5, array5);
     auto start5 = chrono::steady_clock::now();
     if (anyEqual(NUM5, array5) == 1)
     {
@@ -133,7 +141,7 @@ int main()
     auto end5 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds5 = end5 - start5; 
 
-    fillArray(NUM6, array6);
+    average6 = fillArray(NUM6, array6);
     auto start6 = chrono::steady_clock::now();
     if (anyEqual(NUM6, array6) == 1)
     {
@@ -146,7 +154,7 @@ int main()
     auto end6 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds6 = end6 - start6; 
 
-    fillArray(NUM7, array7);
+    average7 = fillArray(NUM7, array7);
     auto start7 = chrono::steady_clock::now();
     if (anyEqual(NUM7, array7) == 1)
     {
@@ -159,7 +167,7 @@ int main()
     auto end7 = chrono::steady_clock::now();
     chrono::duration<double> elapsed_seconds7 = end7 - start7; 
 
-    fillArray(NUM8, array8);
+    average8 = fillArray(NUM8, array8);
     auto start8 = chrono::steady_clock::now();
     if (anyEqual(NUM8, array8) == 1)
     {
@@ -173,10 +181,9 @@ int main()
     chrono::duration<double> elapsed_seconds8 = end8 - start8; 
 
     //Print table
-    cout << "\t\t\tArray Size and Times: \n";
+    cout << "\t\t\tArray Size and Average Times: \n";
     cout << NUM1 << "\t" << NUM2 << "\t" << NUM3 << "\t" << NUM4 << "\t" << NUM5 << "\t" << NUM6 << "\t" << NUM7 << "\t" << NUM8 << endl;
-    cout << elapsed_seconds1.count() << "\t" << elapsed_seconds2.count() << "\t" << elapsed_seconds3.count() << "\t" << elapsed_seconds4.count() << "\t";
-    cout << elapsed_seconds5.count() << "\t" << elapsed_seconds6.count() << "\t" << elapsed_seconds7.count() << "\t" << elapsed_seconds8.count() << endl;
+    cout << average1 << "\t" << average2 << "\t" << average3 << "\t" << average4 << "\t" << average5 << "\t" << average6 << "\t" << average7 << "\t" << average8 << endl;
 
     //delete the pointers
     for (int count = 0; count < NUM1; count++)
@@ -223,23 +230,43 @@ int main()
     return 0;
 }
 
-void fillArray(const int n, int** A)
+double fillArray(const int n, int** A)
 {
     int loop = 20;
     srand(0);
+    double sum = 0;
+    double average = 0;
+    int result = 0;
 
     for (int count = 0; count < n; count++)   
     {
         for (int counter = 0; counter < n; counter++)
         {
-            for (int counting = 0; counting < 20; counting++)
+            A[count][counter] = (rand() % loop);
+            for (int counting = 0; counting < loop; counting++)
             {
-                A[count][counter] = (rand() % loop);
+                auto start = chrono::steady_clock::now();
+                result = anyEqual(n, A);
+                auto end = chrono::steady_clock::now();
+                chrono::duration<double> elapsed_seconds = end - start; 
+                sum += elapsed_seconds.count();
+                if (result == 1)
+                {
+                    cout << "Array has a pair of matching values.\n";
+                }
+                else //result == 0
+                {
+                    cout << "Array has no matching values.\n";
+                }
+
             }
             
         }
     }
+    average = sum / loop;
+    return average;
 }
+
 
 int anyEqual(const int n, int** A)
 {
