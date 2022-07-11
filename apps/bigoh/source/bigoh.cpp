@@ -91,11 +91,10 @@ int main()
     average7 = fillAndTest(NUM7, array7);
 
     average8 = fillAndTest(NUM8, array8);
-
     //Print table
     cout << "\t\t\tArray Size and Average Times: \n";
-    cout << NUM1 << "\t" << NUM2 << "\t" << NUM3 << "\t" << NUM4 << "\t" << NUM5 << "\t" << NUM6 << "\t" << NUM7 << "\t" << NUM8 << endl;
-    cout << average1 << "\t" << average2 << "\t" << average3 << "\t" << average4 << "\t" << average5 << "\t" << average6 << "\t" << average7 << "\t" << average8 << endl;
+    cout << "Size:\t\t" << NUM1 << "\t" << NUM2 << "\t" << NUM3 << "\t" << NUM4 << "\t" << NUM5 << "\t" << NUM6 << "\t" << NUM7 << "\t" << NUM8 << endl;
+    cout << "Average:\t" << average1 << "\t" << average2 << "\t" << average3 << "\t" << average4 << "\t" << average5 << "\t" << average6 << "\t" << average7 << "\t" << average8 << endl;
 
     //delete the pointers
     for (int count = 0; count < NUM1; count++)
@@ -155,25 +154,15 @@ double fillAndTest(const int n, int** A)
         for (int counter = 0; counter < n; counter++) 
         {
             A[count][counter] = (rand() % loop);
-            for (int counting = 0; counting < loop; counting++)
-            {
-                auto start = chrono::steady_clock::now();
-                result = anyEqual(n, A);
-                auto end = chrono::steady_clock::now();
-                chrono::duration<double> elapsed_seconds = end - start; 
-                sum += elapsed_seconds.count();
-                if (result == 1)
-                {
-                    cout << "Array has a pair of matching values.\n";
-                }
-                else //result == 0
-                {
-                    cout << "Array has no matching values.\n";
-                }
-
-            }
-            
         }
+    }
+    for (int counting = 0; counting < loop; counting++)
+    {
+        auto start = chrono::steady_clock::now();
+        result = anyEqual(n, A);
+        auto end = chrono::steady_clock::now();
+        chrono::duration<double> elapsed_seconds = end - start; 
+        sum += elapsed_seconds.count();
     }
     average = sum / loop;
     return average;
