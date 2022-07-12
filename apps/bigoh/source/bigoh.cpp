@@ -11,8 +11,10 @@
 using namespace std; 
 
 //function prototypes 
+void initializeArray(const int, int**);
 int anyEqual(const int, int**);
 double fillAndTest(const int, int**);
+void clearArray(const int, int**);
 
 
 int main()
@@ -36,45 +38,21 @@ int main()
     
     //double pointer array initialization
     int ** array1 = new int*[NUM1];
-    for (int count = 0; count < NUM1; count++)
-    {
-        array1[count] = new int[NUM1];
-    }
+    initializeArray(NUM1, array1);
     int ** array2 = new int*[NUM2];
-    for (int count = 0; count < NUM2; count++)
-    {
-        array2[count] = new int[NUM2];
-    }
+    initializeArray(NUM2, array2);
     int ** array3 = new int*[NUM3];
-    for (int count = 0; count < NUM3; count++)
-    {
-        array3[count] = new int[NUM3];
-    }
+    initializeArray(NUM3, array3);
     int ** array4 = new int*[NUM4];
-    for (int count = 0; count < NUM4; count++)
-    {
-        array4[count] = new int[NUM4];
-    }
+    initializeArray(NUM4, array4);
     int ** array5 = new int*[NUM5];
-    for (int count = 0; count < NUM5; count++)
-    {
-        array5[count] = new int[NUM5];
-    }
+    initializeArray(NUM5, array5);
     int ** array6 = new int*[NUM6];
-    for (int count = 0; count < NUM6; count++)
-    {
-        array6[count] = new int[NUM6];
-    }
+    initializeArray(NUM6, array6);
     int ** array7 = new int*[NUM7];
-    for (int count = 0; count < NUM7; count++)
-    {
-        array7[count] = new int[NUM7];
-    }
+    initializeArray(NUM7, array7);
     int ** array8 = new int*[NUM8];
-    for (int count = 0; count < NUM8; count++)
-    {
-        array8[count] = new int[NUM8];
-    }
+    initializeArray(NUM8, array8);
 
     //call functions to fill array & then time algorithm
     average1 = fillAndTest(NUM1, array1);
@@ -92,6 +70,7 @@ int main()
     average7 = fillAndTest(NUM7, array7);
 
     average8 = fillAndTest(NUM8, array8);
+   
     //Print table
     cout << setprecision(8) << fixed << showpoint;
     cout << "    Array Size and Average Times: \n";
@@ -106,49 +85,24 @@ int main()
     cout << "\t" << NUM8 << "\t" << average8 << endl;
 
     //delete the pointers
-    //set all to nullptr!!!
-    for (int count = 0; count < NUM1; count++)
-    {
-        delete[] array1[count];
-    }
-    delete[] array1;
-    for (int count = 0; count < NUM2; count++)
-    {
-        delete[] array2[count];
-    }
-    delete[] array2;
-    for (int count = 0; count < NUM3; count++)
-    {
-        delete[] array3[count];
-    }
-    delete[] array3;
-    for (int count = 0; count < NUM4; count++)
-    {
-        delete[] array4[count];
-    }
-    delete[] array4;
-    for (int count = 0; count < NUM5; count++)
-    {
-        delete[] array5[count];
-    }
-    delete[] array5;
-    for (int count = 0; count < NUM6; count++)
-    {
-        delete[] array6[count];
-    }
-    delete[] array6;
-    for (int count = 0; count < NUM7; count++)
-    {
-        delete[] array7[count];
-    }
-    delete[] array7;
-    for (int count = 0; count < NUM8; count++)
-    {
-        delete[] array8[count];
-    }
-    delete[] array8;
+    clearArray(NUM1, array1);
+    clearArray(NUM2, array2);
+    clearArray(NUM3, array3);
+    clearArray(NUM4, array4);
+    clearArray(NUM5, array5);
+    clearArray(NUM6, array6);
+    clearArray(NUM7, array7);
+    clearArray(NUM8, array8);
     
     return 0;
+}
+
+void initializeArray(const int n, int** A)
+{
+    for (int count = 0; count < n; count++)
+    {
+        A[count] = new int[n];
+    }
 }
 
 double fillAndTest(const int n, int** A)
@@ -200,4 +154,15 @@ int anyEqual(const int n, int** A)
         }
     }
     return 0;
+}
+
+void clearArray(const int n, int** A)
+{
+    for (int count = 0; count < n; count++)
+    {
+        delete[] A[count];
+        A[count] = nullptr;
+    }
+    delete[] A;
+    A = nullptr;
 }
