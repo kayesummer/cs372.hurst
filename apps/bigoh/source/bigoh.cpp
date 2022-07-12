@@ -7,6 +7,7 @@
 
 #include <iostream> 
 #include <chrono>
+#include <iomanip>
 using namespace std; 
 
 //function prototypes 
@@ -92,11 +93,20 @@ int main()
 
     average8 = fillAndTest(NUM8, array8);
     //Print table
-    cout << "\t\t\tArray Size and Average Times: \n";
-    cout << "Size:\t\t" << NUM1 << "\t" << NUM2 << "\t" << NUM3 << "\t" << NUM4 << "\t" << NUM5 << "\t" << NUM6 << "\t" << NUM7 << "\t" << NUM8 << endl;
-    cout << "Average:\t" << average1 << "\t" << average2 << "\t" << average3 << "\t" << average4 << "\t" << average5 << "\t" << average6 << "\t" << average7 << "\t" << average8 << endl;
+    cout << setprecision(8) << fixed << showpoint;
+    cout << "    Array Size and Average Times: \n";
+    cout << "\tSize:\tAverage Time:\n";
+    cout << "\t" << NUM1 << "\t" << average1 << endl;
+    cout << "\t" << NUM2 << "\t" << average2 << endl;
+    cout << "\t" << NUM3 << "\t" << average3 << endl;
+    cout << "\t" << NUM4 << "\t" << average4 << endl;
+    cout << "\t" << NUM5 << "\t" << average5 << endl;
+    cout << "\t" << NUM6 << "\t" << average6 << endl;
+    cout << "\t" << NUM7 << "\t" << average7 << endl;
+    cout << "\t" << NUM8 << "\t" << average8 << endl;
 
     //delete the pointers
+    //set all to nullptr!!!
     for (int count = 0; count < NUM1; count++)
     {
         delete[] array1[count];
