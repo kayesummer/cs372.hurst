@@ -22,12 +22,33 @@ class Tree
         explicit Tree(shared_ptr<Node> & node): root(node) {}
         shared_ptr<Node> root;
     public:
-        Tree() {}
-        Tree(Tree const &lft, V value, Tree const &rgt) :
+        Tree() {}   //default constructor
+        Tree(Tree const &lft, V value, Tree const &rgt) :   //constructor
             root(Node(val, lft->root, rgt->root)) {}
-        bool isEmpty() const;
-        V root() const; 
-        Tree &left() const;
+        bool isEmpty() const
+        {
+
+        }
+        V root() const
+        {
+
+        }
+        Tree &left() const
+        {
+
+        }
+        Tree &right() const
+        {
+
+        }
+        bool member(V x) const
+        {
+
+        }
+        bool isLeaf() const
+        {
+            
+        }
 
 
 };
