@@ -27,7 +27,7 @@ void swap (int&, int&);
 
 int main()  //driver program
 {
-    const int NUMDISKS = 20;
+    const int NUMDISKS = 25;
     const int FROMPEG = 1;
     const int TOPEG = 3;
     const int TEMPPEG = 2;
