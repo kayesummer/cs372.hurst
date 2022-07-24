@@ -31,17 +31,17 @@ int main()
 {   
     //variables
     const int NUMOFTESTS = 5;
-    const int SIZES [NUMOFTESTS] = {1000, 2500, 5000, 10000, 50000};
+    const int TESTSIZES [NUMOFTESTS] = {1000, 2500, 5000, 10000, 50000};
     double vectorAverages[NUMOFTESTS];
     double bstAverages[NUMOFTESTS];
     
 
     for (int count = 0; count < NUMOFTESTS; count++)    //call each function & insert averages into arrays
     {
-        structure.size = sizes[count];
+        structure.size = TESTSIZES[count];
         fillAndSort(structure.size);
-        vectorAverages[count] = vectorBinarySearch(SIZES[count]);
-        bstAverages[count] = bstSearch(sizes[count]); 
+        vectorAverages[count] = vectorBinarySearch(TESTSIZES[count]);
+        bstAverages[count] = bstSearch(TESTSIZES[count]); 
     }
     
     //Print table
@@ -50,7 +50,7 @@ int main()
     cout << "\tSize:\tVector Average Time:\tTree Average Time:\n";
     for (int count = 0; count < NUMOFTESTS; count++)
     {
-        cout << SIZES[count] << "\t" << vectorAverages[count] << "\t" << bstAverages[count] << endl;
+        cout << TESTSIZES[count] << "\t" << vectorAverages[count] << "\t" << bstAverages[count] << endl;
     }
 
     //delete dynamically allocated variables
