@@ -14,9 +14,9 @@
 template <typename T>
 
 //function prototypes
-vectorBinarySearch(const int, T[]);
-fillAndSort(size_t);
-bstSearch(size_t);
+double vectorBinarySearch(const int, T[], T);
+struct* fillAndSort(size_t);
+double bstSearch(size_t);
 
 struct structure
 {
@@ -34,8 +34,10 @@ int main()
 
     for (int count = 0; count < NUMOFTESTS; count++)
     {
+        structure.size = sizes[count];
+        fillAndSort(structre.size);
         vectorAverages[count] = vectorBinarySearch(SIZES[count]);
-        bstAverages[count] = bstSearch(sizes[count]);
+        bstAverages[count] = bstSearch(sizes[count]); 
     }
     
 
@@ -43,18 +45,67 @@ int main()
 }
 
 template <typename T>
-vectorBinarySearch(const int size, T A[])
+double vectorBinarySearch(const int size, T A[], T value)
+{
+    int first = 0;
+    int last = size - 1;
+    int middle = 0;
+    int position = -1;
+    bool found = false;
+    double sum = 0;
+    double average = 0;
+    int loop = 20;
+
+    for (int count = 0; count < loop; count++)
+    {
+        auto start = chrono::steady_clock::now();
+        while(!found && first <= last)
+        {
+            middle = (first + last) / 2;    //calc midpoint
+            if (A[middle] == value)
+            {
+                found = true;
+                position = middle;
+            }
+            else if (A[middle] > value)     //if in lower half
+            {
+                last = middle - 1;
+            }
+            else        //if in upperhalf
+            {
+                first = middle + 1;
+            }
+        }
+
+        auto end = chrono::steady_clock::now();
+        chrono::duration<double> elapsed_seconds = end - start; 
+        sum += elapsed_seconds.count();
+    }
+
+    average = sum / loop;
+    return average;
+}
+
+struct* fillAndSort(size_t size)
 {
 
 }
 
-fillAndSort(size_t size)
+double bstSearch(size_t size)
 {
+    double sum = 0;
+    double average = 0;
+    int loop = 20;
+    for (int count = 0; count < loop; count++)
+    {
+        auto start = chrono::steady_clock::now();
 
-}
+        auto end = chrono::steady_clock::now();
+        chrono::duration<double> elapsed_seconds = end - start; 
+        sum += elapsed_seconds.count();
+    }
 
-bstSearch(size_t size)
-{
-
+    average = sum / loop;
+    return average;
 }
 
