@@ -17,8 +17,8 @@ template <typename T>
 
 //function prototypes
 myStructure* fillAndSort(size_t);
-double vectorBinarySearch(const int, T);
-double bstSearch(int);
+void vectorBinarySearch(const int, T);
+void bstSearch(int);
 
 //global variables
 struct myStructure
@@ -36,18 +36,33 @@ int main()
     const int TESTSIZES [NUMOFTESTS] = {1000, 2500, 5000, 10000, 50000};
     double vectorAverages[NUMOFTESTS];
     double bstAverages[NUMOFTESTS];
+    double vectorSum = 0;
+    double bstSum = 0;
     srand(0);
     
     for (int count = 0; count < NUMOFTESTS; count++)    //call each function & insert averages into arrays
     {
         structPtr.size = TESTSIZES[count]; 
-        myStructure* structPtr = fillAndSort(structPtr.size);
+        myStructure* structPtr = fillAndSort(structPtr.size);   
         for (int counter = 0; counter < LOOP; counter++)
         {
-            int value = rand() % TESTSIZES[count];
-            vectorAverages[count] = vectorBinarySearch(TESTSIZES[count], value);
-            bstAverages[count] = bstSearch(value); 
+            int value = rand() % TESTSIZES[count];  //get random number
+            //time binary search times
+            auto start1 = chrono::steady_clock::now();
+            vectorBinarySearch(TESTSIZES[count], value);
+            auto end1 = chrono::steady_clock::now();
+            chrono::duration<double> elapsed_seconds1 = end1 - start1; 
+            vectorSum += elapsed_seconds1.count();
+
+            //time bst search times
+            auto start2 = chrono::steady_clock::now();
+            bstSearch(value); 
+            auto end2 = chrono::steady_clock::now();
+            chrono::duration<double> elapsed_seconds2 = end2 - start2;
+            bstSum += elapsed_seconds2.count();
         }
+        vectorAverages[count] = vectorSum / LOOP;
+        bstAverages[count] = bstSum / LOOP;
         delete structPtr;       //reset struct variables
         structPtr = nullptr;
     }
@@ -84,62 +99,35 @@ myStructure* fillAndSort(size_t size)
 }
 
 template <typename T>
-double vectorBinarySearch(const int size, T value)
+void vectorBinarySearch(const int size, T value)
 {
     T first = 0;
     T last = size - 1;
     T middle = 0;
     T position = -1;
     bool found = false;
-    double sum = 0;
-    double average = 0;
-    int loop = 20;
 
-    for (int count = 0; count < loop; count++)
+    while(!found && first <= last)
     {
-        auto start = chrono::steady_clock::now();
-        while(!found && first <= last)
+        middle = (first + last) / 2;    //calc midpoint
+        if (A[middle] == value)
         {
-            middle = (first + last) / 2;    //calc midpoint
-            if (A[middle] == value)
-            {
-                found = true;
-                position = middle;
-            }
-            else if (A[middle] > value)     //if in lower half
-            {
-                last = middle - 1;
-            }
-            else        //if in upperhalf
-            {
-                first = middle + 1;
-            }
+            found = true;
+            position = middle;
         }
-
-        auto end = chrono::steady_clock::now();
-        chrono::duration<double> elapsed_seconds = end - start; 
-        sum += elapsed_seconds.count();
+        else if (A[middle] > value)     //if in lower half
+        {
+            last = middle - 1;
+        }
+        else        //if in upperhalf
+        {
+            first = middle + 1;
+        }
     }
-
-    average = sum / loop;
-    return average;
 }
 
-double bstSearch(int value)
+void bstSearch(int value)
 {
-    double sum = 0;
-    double average = 0;
-    int loop = 20;
-    for (int count = 0; count < loop; count++)
-    {
-        auto start = chrono::steady_clock::now();
-        structPtr.treePtr.member(value);
-        auto end = chrono::steady_clock::now();
-        chrono::duration<double> elapsed_seconds = end - start; 
-        sum += elapsed_seconds.count();
-    }
-
-    average = sum / loop;
-    return average;
+    structPtr.treePtr.member(value);
 }
 
