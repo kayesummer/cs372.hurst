@@ -17,8 +17,9 @@ template <typename T>
 //function prototypes
 double vectorBinarySearch(const int, T[], T);
 struct* fillAndSort(size_t);
-double bstSearch(size_t);
+double bstSearch(int);
 
+//global variables
 struct structure
 {
     size_t size;
@@ -28,13 +29,14 @@ struct structure
 
 int main()
 {   
+    //variables
     const int NUMOFTESTS = 5;
     const int SIZES [NUMOFTESTS] = {1000, 2500, 5000, 10000, 50000};
     double vectorAverages[NUMOFTESTS];
     double bstAverages[NUMOFTESTS];
     
 
-    for (int count = 0; count < NUMOFTESTS; count++)
+    for (int count = 0; count < NUMOFTESTS; count++)    //call each function & insert averages into arrays
     {
         structure.size = sizes[count];
         fillAndSort(structure.size);
@@ -50,6 +52,12 @@ int main()
     {
         cout << SIZES[count] << "\t" << vectorAverages[count] << "\t" << bstAverages[count] << endl;
     }
+
+    //delete dynamically allocated variables
+    delete [] vectorPtr;
+    vectorPtr = nullptr;
+    delete treePtr;
+    treePtr = nullptr;
 
     return 0; 
 }
@@ -114,7 +122,7 @@ struct* fillAndSort(size_t size)
     return *structure;
 }
 
-double bstSearch(size_t size)
+double bstSearch(int findMe)
 {
     double sum = 0;
     double average = 0;
@@ -122,7 +130,7 @@ double bstSearch(size_t size)
     for (int count = 0; count < loop; count++)
     {
         auto start = chrono::steady_clock::now();
-
+        structure.treePtr.member(findMe);
         auto end = chrono::steady_clock::now();
         chrono::duration<double> elapsed_seconds = end - start; 
         sum += elapsed_seconds.count();
