@@ -5,28 +5,27 @@
 // compares the execution time of binary search vs. lookup times in a binary search tree
 //
 
-#include "tree.h"
-#include <vector>
+#include "tree.h"       //to use tree ADT
+#include <vector>       //to use vector ADT
 #include <algorithm>    //to use sort function
 #include <chrono>       //to time averages
 #include <iomanip>      //for print table 
 #include <iostream>
 using namespace std;
 
-template <typename T>
-
-//function prototypes
-myStructure* fillAndSort(size_t);
-void vectorBinarySearch(const int, T);
-void bstSearch(int);
-
 //global variables
 struct myStructure
 {
-    size_t size;
-    Tree* treePtr = new Tree<int>;
-    vector* vectorPtr = new vector<int>;
+    int size;
+    Tree<int> *treePtr = new Tree<int>;
+    vector<int> *vectorPtr = new vector<int>;
 };
+
+//function prototypes 
+myStructure* fillAndSort(const int); 
+void vectorBinarySearch(vector<int> *, const int, int);
+void bstSearch(Tree<int> *, int);
+
 
 int main()
 {   
@@ -41,22 +40,21 @@ int main()
     srand(0);
     
     for (int count = 0; count < NUMOFTESTS; count++)    //call each function & insert averages into arrays
-    {
-        structPtr.size = TESTSIZES[count]; 
-        myStructure* structPtr = fillAndSort(structPtr.size);   
+    { 
+        myStructure* structPtr = fillAndSort(TESTSIZES[count]);   
         for (int counter = 0; counter < LOOP; counter++)
         {
             int value = rand() % TESTSIZES[count];  //get random number
             //time binary search times
             auto start1 = chrono::steady_clock::now();
-            vectorBinarySearch(TESTSIZES[count], value);
+            vectorBinarySearch((structPtr->vectorPtr), TESTSIZES[count], value);
             auto end1 = chrono::steady_clock::now();
             chrono::duration<double> elapsed_seconds1 = end1 - start1; 
             vectorSum += elapsed_seconds1.count();
 
             //time bst search times
             auto start2 = chrono::steady_clock::now();
-            bstSearch(value); 
+            bstSearch((structPtr->treePtr), value); 
             auto end2 = chrono::steady_clock::now();
             chrono::duration<double> elapsed_seconds2 = end2 - start2;
             bstSum += elapsed_seconds2.count();
@@ -79,27 +77,26 @@ int main()
     return 0; 
 }
 
-myStructure* fillAndSort(size_t size)
+myStructure* fillAndSort(const int size)
 {
     myStructure* structPtr = new myStructure;
     srand(0);
     
     for (int count = 0; count < size; count++)  //fill the vector with random integers
     {
-        structPtr.vectorPtr.push_back(rand() % size);
+        (structPtr->vectorPtr)->push_back(rand() % size);
     }
-    sort(structPtr.vectorPtr.begin(), structPtr.vectorPtr.end());   //sort vector
+    sort((structPtr->vectorPtr)->begin(), (structPtr->vectorPtr)->end());   //sort vector
     
     for (int count = 0; count < size; count++)      //fill tree with same elements in vector
     {
-        structPtr.treePtr.insert(structPtr.vectorPtr[count]);
+        (structPtr->treePtr)->insert((structPtr->vectorPtr->at(count)));        //having issues assigning vector values to bst, used .at() b/c [] was giving errors
     }
-
     return structPtr;
 }
 
 template <typename T>
-void vectorBinarySearch(const int size, T value)
+void vectorBinarySearch(T A, const int size, T value)
 {
     T first = 0;
     T last = size - 1;
@@ -124,10 +121,26 @@ void vectorBinarySearch(const int size, T value)
             first = middle + 1;
         }
     }
+    if (found)
+    {
+        cout << "vector: found ";
+    }
+    else 
+    {
+        cout << "vector: not found ";
+    }
 }
 
-void bstSearch(int value)
+void bstSearch(Tree<int> *treePtr, int value)
 {
-    structPtr.treePtr.member(value);
+    bool found = (treePtr)->member(value);
+    if (found)
+    {
+        cout << "bst: found ";
+    }
+    else 
+    {
+        cout << "bst: not found ";
+    }
 }
 
