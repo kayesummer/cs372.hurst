@@ -9,7 +9,7 @@
 #include <vector>
 #include <algorithm>    //to use sort function
 #include <chrono>       //to time averages
-#include <iomanip>      //for print table
+#include <iomanip>      //for print table 
 #include <iostream>
 using namespace std;
 
@@ -21,7 +21,7 @@ struct* fillAndSort(size_t);
 double bstSearch(int);
 
 //global variables
-struct structure
+struct myStructure
 {
     size_t size;
     Tree* treePtr = new Tree<int>;
@@ -36,13 +36,15 @@ int main()
     double vectorAverages[NUMOFTESTS];
     double bstAverages[NUMOFTESTS];
     
-
     for (int count = 0; count < NUMOFTESTS; count++)    //call each function & insert averages into arrays
     {
-        structure.size = TESTSIZES[count];
-        fillAndSort(structure.size);
+        myStructure* structPtr = new myStructure;
+        structPtr.size = TESTSIZES[count];
+        fillAndSort(structPtr.size);
         vectorAverages[count] = vectorBinarySearch(TESTSIZES[count]);
         bstAverages[count] = bstSearch(TESTSIZES[count]); 
+        delete structPtr;       //reset struct variables
+        structPtr = nullptr;
     }
     
     //Print table
@@ -53,12 +55,6 @@ int main()
     {
         cout << TESTSIZES[count] << "\t" << vectorAverages[count] << "\t" << bstAverages[count] << endl;
     }
-
-    //delete dynamically allocated variables
-    delete [] vectorPtr;
-    vectorPtr = nullptr;
-    delete treePtr;
-    treePtr = nullptr;
 
     return 0; 
 }
@@ -131,7 +127,7 @@ double bstSearch(int findMe)
     for (int count = 0; count < loop; count++)
     {
         auto start = chrono::steady_clock::now();
-        structure.treePtr.member(findMe);
+        myStructure.treePtr.member(findMe);
         auto end = chrono::steady_clock::now();
         chrono::duration<double> elapsed_seconds = end - start; 
         sum += elapsed_seconds.count();
