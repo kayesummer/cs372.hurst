@@ -57,10 +57,10 @@ int main()
 template <typename T>
 double vectorBinarySearch(const int size, T A[], T value)
 {
-    int first = 0;
-    int last = size - 1;
-    int middle = 0;
-    int position = -1;
+    T first = 0;
+    T last = size - 1;
+    T middle = 0;
+    T position = -1;
     bool found = false;
     double sum = 0;
     double average = 0;
@@ -98,7 +98,20 @@ double vectorBinarySearch(const int size, T A[], T value)
 
 struct* fillAndSort(size_t size)
 {
+    srand(0);
+    
+    for (int count = 0; count < size; count++)  //fill the vector with random integers
+    {
+        structure.vectorPtr.push_back(rand() % size);
+    }
+    sort(structure.vectorPtr.begin(), structure.vectorPtr.end());   //sort vector
+    
+    for (int count = 0; count < size; count++)      //fill tree with same elements in vector
+    {
+        structure.treePtr.insert(structure.vectorPtr[count]);
+    }
 
+    return *structure;
 }
 
 double bstSearch(size_t size)
