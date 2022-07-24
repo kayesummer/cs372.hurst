@@ -17,7 +17,7 @@ template <typename T>
 
 //function prototypes
 myStructure* fillAndSort(size_t);
-double vectorBinarySearch(const int, T[], T);
+double vectorBinarySearch(const int, T);
 double bstSearch(int);
 
 //global variables
@@ -32,16 +32,22 @@ int main()
 {   
     //variables
     const int NUMOFTESTS = 5;
+    const int LOOP = 100;
     const int TESTSIZES [NUMOFTESTS] = {1000, 2500, 5000, 10000, 50000};
     double vectorAverages[NUMOFTESTS];
     double bstAverages[NUMOFTESTS];
+    srand(0);
     
     for (int count = 0; count < NUMOFTESTS; count++)    //call each function & insert averages into arrays
     {
-        structPtr.size = TESTSIZES[count];
+        structPtr.size = TESTSIZES[count]; 
         myStructure* structPtr = fillAndSort(structPtr.size);
-        vectorAverages[count] = vectorBinarySearch(TESTSIZES[count]);
-        bstAverages[count] = bstSearch(TESTSIZES[count]); 
+        for (int counter = 0; counter < LOOP; counter++)
+        {
+            int value = rand() % TESTSIZES[count];
+            vectorAverages[count] = vectorBinarySearch(TESTSIZES[count], value);
+            bstAverages[count] = bstSearch(value); 
+        }
         delete structPtr;       //reset struct variables
         structPtr = nullptr;
     }
@@ -78,7 +84,7 @@ myStructure* fillAndSort(size_t size)
 }
 
 template <typename T>
-double vectorBinarySearch(const int size, T A[], T value)
+double vectorBinarySearch(const int size, T value)
 {
     T first = 0;
     T last = size - 1;
@@ -119,7 +125,7 @@ double vectorBinarySearch(const int size, T A[], T value)
     return average;
 }
 
-double bstSearch(int findMe)
+double bstSearch(int value)
 {
     double sum = 0;
     double average = 0;
@@ -127,7 +133,7 @@ double bstSearch(int findMe)
     for (int count = 0; count < loop; count++)
     {
         auto start = chrono::steady_clock::now();
-        structPtr.treePtr.member(findMe);
+        structPtr.treePtr.member(value);
         auto end = chrono::steady_clock::now();
         chrono::duration<double> elapsed_seconds = end - start; 
         sum += elapsed_seconds.count();
