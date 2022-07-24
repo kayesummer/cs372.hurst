@@ -96,7 +96,7 @@ myStructure* fillAndSort(const int size)
 }
 
 template <typename T>
-void vectorBinarySearch(T A, const int size, T value)
+void vectorBinarySearch(vector<T> *V, const int size, T value)
 {
     T first = 0;
     T last = size - 1;
@@ -107,12 +107,12 @@ void vectorBinarySearch(T A, const int size, T value)
     while(!found && first <= last)
     {
         middle = (first + last) / 2;    //calc midpoint
-        if (A[middle] == value)
+        if (V[middle] == value)
         {
             found = true;
             position = middle;
         }
-        else if (A[middle] > value)     //if in lower half
+        else if (V[middle] > value)     //if in lower half
         {
             last = middle - 1;
         }
