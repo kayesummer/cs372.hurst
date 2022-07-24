@@ -9,6 +9,7 @@
 #include <vector>
 #include <algorithm>
 #include <chrono>
+#include <iomanip>
 #include <iostream>
 
 template <typename T>
@@ -21,7 +22,8 @@ double bstSearch(size_t);
 struct structure
 {
     size_t size;
-
+    Tree* treePtr = new Tree<int>;
+    vector* vectorPtr = new vector<int>;
 };
 
 int main()
@@ -35,11 +37,19 @@ int main()
     for (int count = 0; count < NUMOFTESTS; count++)
     {
         structure.size = sizes[count];
-        fillAndSort(structre.size);
+        fillAndSort(structure.size);
         vectorAverages[count] = vectorBinarySearch(SIZES[count]);
         bstAverages[count] = bstSearch(sizes[count]); 
     }
     
+    //Print table
+    cout << setprecision(8) << fixed << showpoint;
+    cout << "    Vector and Tree Size and Average Times: \n";
+    cout << "\tSize:\tVector Average Time:\tTree Average Time:\n";
+    for (int count = 0; count < NUMOFTESTS; count++)
+    {
+        cout << SIZES[count] << "\t" << vectorAverages[count] << "\t" << bstAverages[count] << endl;
+    }
 
     return 0; 
 }
