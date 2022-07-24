@@ -39,7 +39,8 @@ int main()
     double bstSum = 0;
     srand(0);
     
-    for (int count = 0; count < NUMOFTESTS; count++)    //call each function & insert averages into arrays
+    //call each function & insert averages into arrays
+    for (int count = 0; count < NUMOFTESTS; count++)    
     { 
         myStructure* structPtr = fillAndSort(TESTSIZES[count]);   
         for (int counter = 0; counter < LOOP; counter++)
@@ -68,7 +69,7 @@ int main()
     //Print table
     cout << setprecision(8) << fixed << showpoint;
     cout << "    Vector and Tree Size and Average Times: \n";
-    cout << "\tSize:\tVector Average Time:\tTree Average Time:\n";
+    cout << "Size:\tVector Time:\tTree Time:\n";
     for (int count = 0; count < NUMOFTESTS; count++)
     {
         cout << TESTSIZES[count] << "\t" << vectorAverages[count] << "\t" << bstAverages[count] << endl;
@@ -95,24 +96,24 @@ myStructure* fillAndSort(const int size)
     return structPtr;
 }
 
-template <typename T>
-void vectorBinarySearch(vector<T> *V, const int size, T value)
+//template <typename T>
+void vectorBinarySearch(vector<int> *V, const int size, int value)
 {
-    T first = 0;
-    T last = size - 1;
-    T middle = 0;
-    T position = -1;
+    int first = 0;
+    int last = size - 1;
+    int middle = 0;
+    int position = -1;
     bool found = false;
 
-    while(!found && first <= last)
+    while(!found && first <= last) 
     {
         middle = (first + last) / 2;    //calc midpoint
-        if (V[middle] == value)
+        if (V->at(middle) == value) //used at() again b/c [] not working w/ comparison operators
         {
             found = true;
             position = middle;
         }
-        else if (V[middle] > value)     //if in lower half
+        else if (V->at(middle) > value)     //if in lower half
         {
             last = middle - 1;
         }
@@ -121,26 +122,10 @@ void vectorBinarySearch(vector<T> *V, const int size, T value)
             first = middle + 1;
         }
     }
-    if (found)
-    {
-        cout << "vector: found ";
-    }
-    else 
-    {
-        cout << "vector: not found ";
-    }
 }
 
 void bstSearch(Tree<int> *treePtr, int value)
 {
     bool found = (treePtr)->member(value);
-    if (found)
-    {
-        cout << "bst: found ";
-    }
-    else 
-    {
-        cout << "bst: not found ";
-    }
 }
 
