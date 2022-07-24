@@ -7,10 +7,11 @@
 
 #include "tree.h"
 #include <vector>
-#include <algorithm>
-#include <chrono>
-#include <iomanip>
+#include <algorithm>    //to use sort function
+#include <chrono>       //to time averages
+#include <iomanip>      //for print table
 #include <iostream>
+using namespace std;
 
 template <typename T>
 
