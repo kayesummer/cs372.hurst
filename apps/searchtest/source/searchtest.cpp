@@ -16,8 +16,8 @@ using namespace std;
 template <typename T>
 
 //function prototypes
+myStructure* fillAndSort(size_t);
 double vectorBinarySearch(const int, T[], T);
-struct* fillAndSort(size_t);
 double bstSearch(int);
 
 //global variables
@@ -38,9 +38,8 @@ int main()
     
     for (int count = 0; count < NUMOFTESTS; count++)    //call each function & insert averages into arrays
     {
-        myStructure* structPtr = new myStructure;
         structPtr.size = TESTSIZES[count];
-        fillAndSort(structPtr.size);
+        myStructure* structPtr = fillAndSort(structPtr.size);
         vectorAverages[count] = vectorBinarySearch(TESTSIZES[count]);
         bstAverages[count] = bstSearch(TESTSIZES[count]); 
         delete structPtr;       //reset struct variables
@@ -57,6 +56,25 @@ int main()
     }
 
     return 0; 
+}
+
+myStructure* fillAndSort(size_t size)
+{
+    myStructure* structPtr = new myStructure;
+    srand(0);
+    
+    for (int count = 0; count < size; count++)  //fill the vector with random integers
+    {
+        structPtr.vectorPtr.push_back(rand() % size);
+    }
+    sort(structPtr.vectorPtr.begin(), structPtr.vectorPtr.end());   //sort vector
+    
+    for (int count = 0; count < size; count++)      //fill tree with same elements in vector
+    {
+        structPtr.treePtr.insert(structPtr.vectorPtr[count]);
+    }
+
+    return structPtr;
 }
 
 template <typename T>
@@ -101,24 +119,6 @@ double vectorBinarySearch(const int size, T A[], T value)
     return average;
 }
 
-struct* fillAndSort(size_t size)
-{
-    srand(0);
-    
-    for (int count = 0; count < size; count++)  //fill the vector with random integers
-    {
-        structure.vectorPtr.push_back(rand() % size);
-    }
-    sort(structure.vectorPtr.begin(), structure.vectorPtr.end());   //sort vector
-    
-    for (int count = 0; count < size; count++)      //fill tree with same elements in vector
-    {
-        structure.treePtr.insert(structure.vectorPtr[count]);
-    }
-
-    return *structure;
-}
-
 double bstSearch(int findMe)
 {
     double sum = 0;
@@ -127,7 +127,7 @@ double bstSearch(int findMe)
     for (int count = 0; count < loop; count++)
     {
         auto start = chrono::steady_clock::now();
-        myStructure.treePtr.member(findMe);
+        structPtr.treePtr.member(findMe);
         auto end = chrono::steady_clock::now();
         chrono::duration<double> elapsed_seconds = end - start; 
         sum += elapsed_seconds.count();
